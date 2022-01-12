@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="ko">
     <head>
         <meta charset="utf-8" />
@@ -29,11 +30,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/AllProduct.do">전체상품</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/life.do">생활</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/food.do">식품</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/baby.do">육아</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/beauty.do">뷰티</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/kitchen.do">자유게시판</a></li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/loginFrm.do">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/joinFrm.do">회원가입</a></li>
                     </ul>
                 </div>
             </div>
