@@ -16,8 +16,11 @@
 			<div class="join-wrap">
 				<div class="join-logo">
 					<span>회원가입</span>
-				</div>
+				</div><br><br>
 				<form action="/join" method="post" enctype="multipart/form-data">
+					<h5>프로필 사진</h5>
+					<img id="img1" src="/resources/img/profile.png"/>
+					<input type="file" name="filepath" id="filepath" accept=".gif, .jpg, .jpeg, .png"><br><br>
 					<h5>아이디</h5>
 					<div class="middle">
 						<input type="text" name="memberId" id="memberId" class="form-control" placeholder="아이디 입력(4~12글자)" maxlength="12">
@@ -40,7 +43,7 @@
 					<h5>전화번호</h5>
 					<input type="text" name="phone" id="phone" class="form-control" placeholder="전화번호 입력 -포함" maxlength="13">
 					<span class="expResult">　</span><br>
-					<h2>주소</h2>
+					<h5>주소</h5>
 					<div class="middle">
 						<input type="text" name="postcode" id="postcode" class="form-control" readonly placeholder="우편번호">
 						<button type="button" class="btn btn-primary" id="findpostcode">주소 찾기</button><!-- onclick="findAddr();"있었음 -->
@@ -56,110 +59,21 @@
 					<div class="middle">
 						<input type="text" name="email" id="email" class="form-control" placeholder="이메일" maxlength="33"><button type="button" id="emailbutton" class="btn btn-primary">인증번호 받기</button><!-- onclick="sendMail();"있었음 -->
 					</div>
-					<span class="expResult">　</span><br>
+					<span class="expResult"></span>
 					<br>
 					<div id="auth">
 						<input type="text" id="authCode" class="form-control" placeholder="인증코드 입력" maxlength="6">
 						<button type="button" class="btn btn-primary" id="authBtn">인증하기</button>
 						<span id="timeZone"></span>
 						<span id="authMsg"></span>
-					</div>	
-					
-					<br><br>
-					<h5>프로필 사진</h5>
-					<input type="file" name="filepath" id="filepath" accept=".gif, .jpg, .jpeg, .png"><br><br>
-					<!-- 관심지역 1, 2, 3 1만 필수 -->
-					<h5>관심지역1<span class="text-muted" style="font-size: 16px;">* 관심지역1은 반드시 선택하셔야 합니다</span></h5>
-					
-					<!-- 관심지역1 -->
-		        	<select id="local1sel" class="localsel" >
-                    <option value="" selected disabled>시, 도</option>
-                    <option value="seoul">서울특별시</option>
-                    <option value="busan">부산광역시</option>
-                    <option value="daegu">대구광역시</option>
-                    <option value="incheon">인천광역시</option>
-                    <option value="kwangju">광주광역시</option>
-                    <option value="deajeon">대전광역시</option>
-                    <option value="ulsan">울산광역시</option>
-                    <option value="sejong">세종특별자치시</option>
-                    <option value="kyeonggi">경기도</option>
-                    <option value="kangwon">강원도</option>
-                    <option value="chungbuk">충청북도</option>
-                    <option value="chungnam">충청남도</option>
-                    <option value="jeonbuk">전라북도</option>
-                    <option value="jeonnam">전라남도</option>
-                    <option value="kyeongbuk">경상북도</option>
-                    <option value="kyeongnam">경상남도</option>
-                    <option value="jeju">제주특별자치도</option>
-	        		</select>
-			        <select id="local1" name="local1">
-			        	<option value="0">시, 군, 구</option>
-			        </select><br>
-		        	<span class="expResult">　</span>
-			        <!-- 관심지역1 끝 -->
-			        <br>
-			        <!-- 관심지역2 -->
-			        <h5>관심지역2</h5>
-		        	<select id="local2sel" class="localsel">
-                <option value="" selected disabled>시, 도</option>
-                <option value="seoul">서울특별시</option>
-                <option value="busan">부산광역시</option>
-                <option value="daegu">대구광역시</option>
-                <option value="incheon">인천광역시</option>
-                <option value="kwangju">광주광역시</option>
-                <option value="deajeon">대전광역시</option>
-                <option value="ulsan">울산광역시</option>
-                <option value="sejong">세종특별자치시</option>
-                <option value="kyeonggi">경기도</option>
-                <option value="kangwon">강원도</option>
-                <option value="chungbuk">충청북도</option>
-                <option value="chungnam">충청남도</option>
-                <option value="jeonbuk">전라북도</option>
-                <option value="jeonnam">전라남도</option>
-                <option value="kyeongbuk">경상북도</option>
-                <option value="kyeongnam">경상남도</option>
-                <option value="jeju">제주특별자치도</option>
-	        		</select>
-			        <select id="local2" name="local2">
-			        	<option value="0">시, 군, 구</option>
-			        </select><br>
-			        <!-- 관심지역2 끝 -->
-			        <br>
-			        <!-- 관심지역3 -->
-			        <h5>관심지역3</h5>
-		        	<select id="local3sel" class="localsel">
-                <option value="" selected disabled>시, 도</option>
-                <option value="seoul">서울특별시</option>
-                <option value="busan">부산광역시</option>
-                <option value="daegu">대구광역시</option>
-                <option value="incheon">인천광역시</option>
-                <option value="kwangju">광주광역시</option>
-                <option value="deajeon">대전광역시</option>
-                <option value="ulsan">울산광역시</option>
-                <option value="sejong">세종특별자치시</option>
-                <option value="kyeonggi">경기도</option>
-                <option value="kangwon">강원도</option>
-                <option value="chungbuk">충청북도</option>
-                <option value="chungnam">충청남도</option>
-                <option value="jeonbuk">전라북도</option>
-                <option value="jeonnam">전라남도</option>
-                <option value="kyeongbuk">경상북도</option>
-                <option value="kyeongnam">경상남도</option>
-                <option value="jeju">제주특별자치도</option>
-	        		</select>
-			        <select id="local3" name="local3">
-			        	<option value="0">시, 군, 구</option>
-			        </select>
-			        <!-- 관심지역3 끝 -->
-			        <br>
-					<br><br>
+					</div><br>
 					<input type="hidden" name="sms" id="agree" value="9">
 
 					<input type="checkbox" id="chkAllBox">약관 전체 동의합니다.<br> 			
 					<input type="checkbox" class="priBox">개인정보 수집 이용 동의(필수) 
 					<a data-toggle="modal" href="#modal1">약관 보기</a>
 					<br>
-					<input type="checkbox" class="priBox">오렌지마켓 이용 약관(필수) 
+					<input type="checkbox" class="priBox">(주)위너 약관(필수) 
 					<a data-toggle="modal" href="#modal2">약관 보기</a>
 					<br>
 					<input type="checkbox" class="priBox">SMS 문자 수신 동의(선택) 
@@ -182,7 +96,7 @@
 				</div>
 					<div class="modal-body">
 						<p class="agreement">
-							(주)오렌지마켓은 아래의 목적으로 개인정보를 수집 및 이용하며, 회원의 개인정보를 안전하게 취급하는데 최선을 다하고 있습니다.<br>
+							(주)위너는 아래의 목적으로 개인정보를 수집 및 이용하며, 회원의 개인정보를 안전하게 취급하는데 최선을 다하고 있습니다.<br>
 							<b>1. 수집목적</b><br>
 							- 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산<br>
 							- 민원사무 처리<br>
@@ -216,9 +130,9 @@
 						<div class="modal-body">
 							<p class="agreement">
 								제1조(목적)<br>
-								이 약관은 주식회사 오렌지마켓이 운영하는 사이버 마켓 “오렌지마켓”(이하 “마켓”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 마켓과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.<br><br>
+								이 약관은 주식회사 위너가 운영하는 사이버 마켓 “위너”(이하 “마켓”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 마켓과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.<br><br>
 								제2조(정의)<br>
-								① “마켓”이란 주식회사 오렌지마켓이 재화 또는 용역(이하 “재화 등”이라 함)을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 등을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 사이버마켓을 운영하는 사업자의 의미로도 사용합니다.<br>
+								① “마켓”이란 주식회사 위너가 재화 또는 용역(이하 “재화 등”이라 함)을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 등을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 사이버마켓을 운영하는 사업자의 의미로도 사용합니다.<br>
 								② “이용자”란 “마켓”에 접속하여 이 약관에 따라 “몰”이 제공하는 서비스를 받는 회원 및 비회원을 말합니다.<br>
 								③ ‘회원’이라 함은 “마켓”에 회원등록을 한 자로서, 계속적으로 “몰”이 제공하는 서비스를 이용할 수 있는 자를 말합니다.<br>
 								④ ‘비회원’이라 함은 회원에 가입하지 않고 “마켓”이 제공하는 서비스를 이용하는 자를 말합니다.<br>
@@ -276,6 +190,30 @@
 				$("#filepath").val("");
 			}
 		});
+	
+		//프로필사진 미리보기
+		$(function() {
+		    $("#filepath").on('change', function(){
+		    readURL(this);
+		    });
+		});
+		function readURL(input) {
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+		        reader.onload = function (e) {
+		        $('#img1').attr('src', e.target.result);
+		        }       
+		        reader.readAsDataURL(input.files[0]);
+		    }
+		    
+		    filesArr.forEach(function(f) {
+		        if(!f.type.match("image.*")) {
+		            alert("프로필 사진은 이미지 확장자만 업로드 가능합니다.");
+		            $("#filepath").val("");
+		            return;
+		       	}
+			}
+		}
 	</script>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
