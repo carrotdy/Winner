@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="ko">
     <head>
         <meta charset="utf-8" />
@@ -38,12 +39,26 @@
                         <li class="nav-item"><a class="nav-link" href="/kitchen.do">자유게시판</a></li>
                     </ul>
                 </div>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/loginFrm.do">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/joinFrm.do">회원가입</a></li>
-                    </ul>
-                </div>
+                
+                <c:choose>
+                	<c:when test="${empty sessionScope.m}">
+                		<div class="collapse navbar-collapse" id="navbarResponsive">
+		                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+		                        <li class="nav-item"><a class="nav-link" href="/loginFrm.do">로그인</a></li>
+		                        <li class="nav-item"><a class="nav-link" href="/joinFrm.do">회원가입</a></li>
+		                    </ul>
+                		</div>
+                	</c:when>
+                	<c:otherwise>
+                	    <div class="collapse navbar-collapse" id="navbarResponsive">
+		                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+		                        <li class="nav-item"><a class="nav-link" href="/myPage.do">내정보</a></li>
+		                        <li class="nav-item"><a class="nav-link" href="/logout.do">로그아웃</a></li>
+		                    </ul>
+                		</div>
+                	</c:otherwise>
+                </c:choose>
+                
             </div>
         </nav>
         <!-- Masthead-->

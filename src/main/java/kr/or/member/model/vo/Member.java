@@ -15,5 +15,5 @@ public class Member {
 	private String email;       //이메일
 	private String enrollDate;  //가입일
 	private String filePath;    //파일경로
-	private int memberLevel;    //회원레밸
+	private int memberLevel;    //회원레밸 0.관리자 1.일반회원 2.블랙회원 
 }

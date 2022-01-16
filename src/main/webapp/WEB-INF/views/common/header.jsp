@@ -25,7 +25,7 @@
 <div class="header-wrapper">
     <nav class="navbar navbar-expand-lg">
         <div class="header-content navbar">
-            <a href="/" style="margin-right: 50px;"><img src=""></a>
+            <a href="/" style="margin-right: 50px; text-decoration:none;"><em style="font-size:30px; margin-right:80px; color:#ffc800;">Winner</em></a>
 			<form style="position: relative;" action="/searchWish.do" method="get" id="searchBar">
                 <input class="form-control me-sm-2" name="search" type="text" placeholder="원하시는 상품 또는 지역을 검색해보세요!"
                     style="height: 50px; min-width: 450px;">
