@@ -8,7 +8,6 @@
 	}
 	#footer-top>ul{
 		font-size: 15px;
-		overflow: hidden;
 	}
 	#footer-top>ul>li{
 		float: left;
@@ -16,9 +15,10 @@
 	}
 	#footer-top>ul>li>a{
 		text-decoration: none;
+		color: white;
 	}
 	#footer{
-		background-color: #374859;
+		background-color: #78C2AD;
 	}
 </style>
 	<footer id="footer">
