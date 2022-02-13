@@ -15,4 +15,9 @@ public class MemberService {
 	public Member login(Member member) {
 		return dao.login(member);
 	}
+
+	//회원가입_아이디 중복체크
+	public Member IdChk(String memberId) {
+		return dao.IdChk(memberId);
+	}
 }

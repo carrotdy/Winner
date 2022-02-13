@@ -15,4 +15,9 @@ public class MemberDao {
 	public Member login(Member member) {
 		return sqlSession.selectOne("member.login",member);
 	}
+
+	//회원가입_아이디 중복체크
+	public Member IdChk(String memberId) {
+		return sqlSession.selectOne("member.IdChk",memberId);
+	}
 }

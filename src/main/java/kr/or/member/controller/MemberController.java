@@ -48,5 +48,14 @@ public class MemberController {
 		return "member/join";
 	}
 	
-	
+	//회원가입_아이디 중복체크
+	@RequestMapping(value="/memberIdChk")
+	public String IdChk(String memberId) {
+		Member m = service.IdChk(memberId);
+		if(m != null) {
+			return "1";
+		}else {
+			return "2";
+		}
+	}
 }

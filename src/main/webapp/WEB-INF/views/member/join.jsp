@@ -206,14 +206,15 @@
 		        reader.readAsDataURL(input.files[0]);
 		    }
 		    
-		    filesArr.forEach(function(f) {
-		        if(!f.type.match("image.*")) {
-		            alert("프로필 사진은 이미지 확장자만 업로드 가능합니다.");
-		            $("#filepath").val("");
-		            return;
-		       	}
-			}
+	        if(!f.type.match("image.*")) {
+	            alert("프로필 사진은 이미지 확장자만 업로드 가능합니다.");
+	            $("#filepath").val("");
+	            return;
+	       	}
 		}
+		
+		//아이디 중복체크
+		
 	</script>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
