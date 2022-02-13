@@ -19,7 +19,6 @@ public class BoardController {
 	@RequestMapping(value="/board.do")
 	public String board(Model model) {
 		ArrayList<Board> list = service.boardList();
-		System.out.println(list);
 		model.addAttribute("list",list);
 		return "board/boardList";
 	}

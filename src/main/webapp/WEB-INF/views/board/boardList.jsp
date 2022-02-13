@@ -12,6 +12,9 @@
 	<div class="container">
 		<fieldset>
 			<legend>자유게시판</legend>
+			<c:if test="${not empty sessionScope.m && (sessionScope.m.memberLevel eq 0 || sessionScope.m.memberLevel eq 1)}">
+				<a class="btn btn-secondary" href="/boardWriteFrm.do" style="float:right; margin-bottom:5px;">글쓰기</a>
+			</c:if>
 			<table class="table table-hover">
 			    <tr class="table-active">
 			      <th scope="row">번호</th>
@@ -22,8 +25,8 @@
 			    </tr>
 			    <c:forEach items="${list }" var="b" varStatus="i">
 			    	<tr class="table-default">
-			    		<td>${start + i.index }</td>
-			    		<td>${b.boardTitle}</td>
+			    		<td>${start + i.index+1 }</td>
+			    		<td><a href='/boardView.do?boardNo=${b.boardNo}' style="text-decoration:none;">${b.boardTitle}</a></td>
 			    		<td>${b.boardWriter}</td>
 			    		<td>${b.regDate}</td>
 			    		<td>${b.readCount}</td>
