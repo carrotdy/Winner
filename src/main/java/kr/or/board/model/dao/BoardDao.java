@@ -19,4 +19,8 @@ public class BoardDao {
 		List<Board> list = session.selectList("board.boardList");
 		return (ArrayList<Board>)list;
 	}
+
+	public Board boardView(Board b) {
+		return session.selectOne("board.boardView",b);
+	}
 }

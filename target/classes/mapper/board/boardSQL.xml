@@ -15,4 +15,19 @@
 			ncCount
 		from board
 	</select>
+	
+	<select id="boardView" parameterType="b" resultType="b">
+		select
+			board_no as boardNo,
+			board_title as boardTitle,
+			board_content as boardContent,
+			board_writer as boardWriter,
+			readCount,
+			regDate,
+			priority,
+			fileName,
+			filePath,
+			ncCount
+		from board where board_no=#{boardNo}
+	</select>
 </mapper>

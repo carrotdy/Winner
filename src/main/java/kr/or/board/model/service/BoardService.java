@@ -17,4 +17,8 @@ public class BoardService {
 		ArrayList<Board> list = dao.boardList();
 		return list;
 	}
+
+	public Board boardView(Board b) {
+		return dao.boardView(b);
+	}
 }
