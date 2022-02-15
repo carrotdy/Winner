@@ -27,4 +27,8 @@ public class BoardDao {
 	public int boardHit(Board b) {
 		return session.update("board.boardHit",b);
 	}
+
+	public int boardDelete(int boardNo) {
+		return session.delete("board.boardDelete",boardNo);
+	}
 }

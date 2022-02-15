@@ -30,5 +30,18 @@ public class BoardController {
 		model.addAttribute("board",board);
 		return "board/boardView";
 	}
+	
+	//삭제
+	@RequestMapping(value="/boardDelete.do")
+	public String boardDelete(int boardNo, Model model) {
+		int result = service.boardDelete(boardNo);
+		if(result > 0) {
+			model.addAttribute("msg","게시물 삭제 성공~!");
+		}else {
+			model.addAttribute("msg","게시물 삭제 실패ㅠㅠ");
+		}
+		model.addAttribute("loc","/board.do?boardNo=" + boardNo);
+		return "common/msg";
+	}
 
 }

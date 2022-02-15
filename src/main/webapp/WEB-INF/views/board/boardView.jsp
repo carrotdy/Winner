@@ -34,9 +34,9 @@
 		    </tr>
 		    <tr>
 		    	<th colspan="4" style="text-align:center;">
-			    	<button class="btn btn-primary">이전화면</button>
-			    	<a href='/boardUpdate.do?boardNo=${boardNo }' class="btn btn-primary">수정하기</a>
-			    	<a href='/boardDelete.do?boardNo=${boardNo }' class="btn btn-primary">삭제하기</a>
+			    	<a href="javascript:history.back();" class="btn btn-primary">이전화면</a>
+			    	<a href='/boardUpdate.do?boardNo=${board.boardNo }' class="btn btn-primary">수정하기</a>
+			    	<a href='/boardDelete.do?boardNo=${board.boardNo }' class="btn btn-primary">삭제하기</a>
 		    	</th>
 		    </tr>
 	    </table>
