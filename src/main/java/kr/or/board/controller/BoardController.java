@@ -15,7 +15,7 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	
-	//게시판 
+	//목록
 	@RequestMapping(value="/board.do")
 	public String board(Model model) {
 		ArrayList<Board> list = service.boardList();
@@ -29,6 +29,27 @@ public class BoardController {
 		Board board = service.boardView(b);
 		model.addAttribute("board",board);
 		return "board/boardView";
+	}
+	
+	//수정이동
+	@RequestMapping(value="/boardUpdateFrm.do")
+	public String boardUpdateFrm(Board b, Model model) {
+		Board board = service.boardView(b);
+		model.addAttribute("board",board);
+		return "board/boardUpdateFrm";
+	}
+	
+	//수정
+	@RequestMapping(value="/boardUpdate.do")
+	public String boardUpdate(Board b, Model model) {
+		int result = service.boardUpdate(b);
+		if(result > 0) {
+			model.addAttribute("msg","게시물 수정 완료~!");
+		}else {
+			model.addAttribute("msg","게시물 수정 실패ㅠㅠ");
+		}
+		model.addAttribute("loc","/boardView.do?boardNo="+b.getBoardNo());
+		return "common/msg";
 	}
 	
 	//삭제

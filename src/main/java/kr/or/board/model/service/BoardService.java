@@ -25,9 +25,16 @@ public class BoardService {
 		Board board = dao.boardView(b);
 		return board;
 	}
-
+	
+	@Transactional
+	public int boardUpdate(Board b) {
+		return dao.boardUpdate(b);
+	}
+	
 	@Transactional
 	public int boardDelete(int boardNo) {
 		return dao.boardDelete(boardNo);
 	}
+
+
 }

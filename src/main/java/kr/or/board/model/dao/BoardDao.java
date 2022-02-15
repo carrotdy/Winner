@@ -28,7 +28,13 @@ public class BoardDao {
 		return session.update("board.boardHit",b);
 	}
 
+	public int boardUpdate(Board b) {
+		return session.update("board.boardUpdate",b);
+	}
+	
 	public int boardDelete(int boardNo) {
 		return session.delete("board.boardDelete",boardNo);
 	}
+
+
 }

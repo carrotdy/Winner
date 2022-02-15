@@ -35,7 +35,12 @@
 		update board set readCount=readCount+1 where board_no=#{boardNo}
 	</update>
 	
+	<update id="boardUpdate" parameterType="b">
+		update board set board_title=#{boardTitle}, board_content=#{boardContent} where board_no=#{boardNo}
+	</update>
+	
 	<delete id="boardDelete" parameterType="int">
 		delete from board where board_no=#{boardNo}
 	</delete>
+	
 </mapper>
