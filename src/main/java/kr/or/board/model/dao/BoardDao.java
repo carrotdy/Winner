@@ -23,4 +23,8 @@ public class BoardDao {
 	public Board boardView(Board b) {
 		return session.selectOne("board.boardView",b);
 	}
+	
+	public int boardHit(Board b) {
+		return session.update("board.boardHit",b);
+	}
 }

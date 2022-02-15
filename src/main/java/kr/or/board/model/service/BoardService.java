@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.board.model.dao.BoardDao;
 import kr.or.board.model.vo.Board;
@@ -18,7 +19,10 @@ public class BoardService {
 		return list;
 	}
 
+	@Transactional
 	public Board boardView(Board b) {
-		return dao.boardView(b);
+		dao.boardHit(b);
+		Board board = dao.boardView(b);
+		return board;
 	}
 }

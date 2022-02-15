@@ -30,4 +30,8 @@
 			ncCount
 		from board where board_no=#{boardNo}
 	</select>
+	
+	<update id="boardHit" parameterType="b">
+		update board set readCount=readCount+1 where board_no=#{boardNo}
+	</update>
 </mapper>

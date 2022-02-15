@@ -23,7 +23,7 @@ public class BoardController {
 		return "board/boardList";
 	}
 	
-	//상세보기
+	//상세보기 + 조회수
 	@RequestMapping(value="/boardView.do")
 	public String boardView(Board b, Model model) {
 		Board board = service.boardView(b);
