@@ -64,5 +64,11 @@ public class BoardController {
 		model.addAttribute("loc","/board.do?boardNo=" + boardNo);
 		return "common/msg";
 	}
+	
+	//글쓰기
+	@RequestMapping(value="/boardWriteFrm.do")
+	public String boardWrite() {
+		return "board/boardWrite";
+	}
 
 }

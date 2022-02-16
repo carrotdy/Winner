@@ -35,8 +35,10 @@
 		    <tr>
 		    	<th colspan="4" style="text-align:center;">
 			    	<a href="javascript:history.back();" class="btn btn-primary">이전화면</a>
-			    	<a href='/boardUpdateFrm.do?boardNo=${board.boardNo }' class="btn btn-primary">수정하기</a>
-			    	<a href='/boardDelete.do?boardNo=${board.boardNo }' class="btn btn-primary">삭제하기</a>
+			    	<c:if test="${sessionScope.m.memberId eq board.boardWriter}">
+		    			<a href='/boardUpdateFrm.do?boardNo=${board.boardNo }' class="btn btn-primary">수정하기</a>
+			    		<a href='/boardDelete.do?boardNo=${board.boardNo }' class="btn btn-primary">삭제하기</a>
+		    		</c:if>
 		    	</th>
 		    </tr>
 	    </table>
