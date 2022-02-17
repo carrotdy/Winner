@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -26,9 +27,12 @@ public class BoardController {
 	
 	//목록
 	@RequestMapping(value="/board.do")
-	public String board(Model model) {
-		ArrayList<Board> list = service.boardList();
-		model.addAttribute("list",list);
+	public String board(int reqPage, Model model) {
+		HashMap<String, Object> map = service.boardList(reqPage);
+
+		model.addAttribute("pageNavi", map.get("pageNavi"));
+		model.addAttribute("list", map.get("list"));
+		model.addAttribute("start", map.get("start"));
 		return "board/boardList";
 	}
 	

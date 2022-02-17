@@ -36,7 +36,7 @@
                         <li class="nav-item"><a class="nav-link" href="/food.do">식품</a></li>
                         <li class="nav-item"><a class="nav-link" href="/baby.do">육아</a></li>
                         <li class="nav-item"><a class="nav-link" href="/beauty.do">뷰티</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/board.do">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/board.do?reqPage=1">자유게시판</a></li>
                     </ul>
                 </div>
                 

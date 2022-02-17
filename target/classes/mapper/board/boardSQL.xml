@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="board">
-	<select id="boardList" parameterType="b" resultType="b">
+	<select id="boardList" parameterType="map" resultType="b">
 		select 
 			board_no as boardNo,
 			board_title as boardTitle,
@@ -13,7 +13,11 @@
 			fileName,
 			filePath,
 			ncCount
-		from board
+		from (select rownum as rnum, b.* from (SELECT * FROM board order by 1 desc)b) board where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="totalCount" parameterType="int">
+		select count(*) from board
 	</select>
 	
 	<select id="boardView" parameterType="b" resultType="b">
@@ -47,7 +51,7 @@
 		INSERT INTO board VALUES
 			(BOARD_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{boardWriter},#{readCount},#{regDate},#{priority},#{fileName},#{filePath},#{ncCount})
 	</insert>
-	
+
 </mapper>
 
 

@@ -50,13 +50,13 @@
 	                	  		<c:if test="${sessionScope.m.memberLevel eq 2 }">
 	                	  		<span class="btn btn-danger"><i class="bi bi-emoji-frown-fill"></i>블랙리스트</span>
 	                	  		</c:if>
-	                	  		<a href="/mypagel.do">${sessionScope.m.memberName }</a></li>
+	                	  		<a href="/mypage.do">${sessionScope.m.memberName }</a></li>
 			                	<li class="header-item"><a href="/logout.do">로그아웃</a></li>
 	                		</c:otherwise>
                 		</c:choose>
                 	</c:otherwise>
                   </c:choose>
-                <li class="header-item"><a href="/noticeList.do" style="color:#374859">공지사항</a></li>
+                <li class="header-item"><a href="/noticeList.do?reqPage=1" style="color:#374859">공지사항</a></li>
                 <li class="header-item" style="margin-right: 0;" ><a href="/qnaList.do" style="color:#374859">QnA</a></li>
             </ul>
       </div>

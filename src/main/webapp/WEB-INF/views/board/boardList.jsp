@@ -33,7 +33,7 @@
 			    	</tr>
 			    </c:forEach>
 			</table>
-			<div id="pageNavi">${pageNavi }</div>
+			<div id="page-navi">${pageNavi }</div>
 		</fieldset>
 	</div>
 	<c:import url="/WEB-INF/views/common/footer.jsp"/>
