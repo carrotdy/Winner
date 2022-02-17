@@ -36,5 +36,9 @@ public class BoardDao {
 		return session.delete("board.boardDelete",boardNo);
 	}
 
+	public int boardWrite(Board b) {
+		return session.insert("board.boardWrite",b);
+	}
+
 
 }

@@ -1,6 +1,15 @@
 package kr.or.board.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,10 +74,64 @@ public class BoardController {
 		return "common/msg";
 	}
 	
-	//글쓰기
+	//글작성 이동
 	@RequestMapping(value="/boardWriteFrm.do")
-	public String boardWrite() {
+	public String boardWriteFrm() {
 		return "board/boardWrite";
 	}
 
+	//글작성
+	@RequestMapping(value="/boardWrite.do")
+	public String boardWrite(Board b, Model model) {
+		System.out.println("1 : "+ b);
+		int result  = service.boardWrite(b);
+		System.out.println("2 : "+ result);
+		if(result > 0) {
+			model.addAttribute("msg","게시물 작성 성공~!");
+		}else {
+			model.addAttribute("msg","게시물 작성 실패ㅠㅠ");
+		}
+		model.addAttribute("loc","/boardWrite.do");
+		return "common/msg";
+	}
+	
+	
+	@RequestMapping(value = "/downFile.do")
+	public void downloadFile(String filepath, String filename, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/board/");
+		System.out.println(filepath);
+		System.out.println(filename);
+		String file = savePath+filepath;
+		
+		
+		FileInputStream fis = new FileInputStream(file);
+		BufferedInputStream bis = new BufferedInputStream(fis);
+		ServletOutputStream sos = response.getOutputStream();
+		BufferedOutputStream bos = new BufferedOutputStream(sos);
+		
+		String resFilename = "";
+		
+		boolean bool = request.getHeader("user-agent").indexOf("MSIE") != -1 || request.getHeader("user-agent").indexOf("Trident") != -1;
+		if(bool) {
+			resFilename = URLEncoder.encode(filename,"UTF-8");
+			resFilename = resFilename.replaceAll("\\\\", "%20");
+		}else {
+			resFilename = new String(filename.getBytes("UTF-8"),"ISO-8859-1");
+		}
+		response.setContentType("application/octet-stream;charset=utf-8");
+		response.setHeader("Content-Disposition", "attachment;filename="+resFilename);
+		
+		while(true) {
+			int read = bis.read();
+			if(read != -1) {
+				bos.write(read);
+			}else {
+				break;
+			}
+		}
+		
+		bis.close();
+		bos.close();
+		
+	}
 }

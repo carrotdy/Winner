@@ -36,5 +36,10 @@ public class BoardService {
 		return dao.boardDelete(boardNo);
 	}
 
+	@Transactional
+	public int boardWrite(Board b) {
+		return dao.boardWrite(b);
+	}
+
 
 }

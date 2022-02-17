@@ -12,9 +12,9 @@
 	<div class="container">
 		<fieldset>
 			<legend>자유게시판</legend>
-			<%-- <c:if test="${not empty sessionScope.m && (sessionScope.m.memberLevel eq 0 || sessionScope.m.memberLevel eq 1)}"> --%>
+			<c:if test="${not empty sessionScope.m && (sessionScope.m.memberLevel eq 0 || sessionScope.m.memberLevel eq 1)}"> 
 				<a class="btn btn-secondary" href='/boardWriteFrm.do' style="float:right; margin-bottom:5px;">글쓰기</a>
-			<%-- </c:if> --%>
+			</c:if>
 			<table class="table table-hover">
 			    <tr class="table-active">
 			      <th scope="row">번호</th>
@@ -33,6 +33,7 @@
 			    	</tr>
 			    </c:forEach>
 			</table>
+			<div id="pageNavi">${pageNavi }</div>
 		</fieldset>
 	</div>
 	<c:import url="/WEB-INF/views/common/footer.jsp"/>

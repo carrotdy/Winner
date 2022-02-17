@@ -11,7 +11,7 @@
 	<c:import url="/WEB-INF/views/common/header.jsp"/>
 	<div class="container">
 		<h2>자유게시판</h2>
-		<table class="table" id="freeView" style="width:100%;">
+		<table class="table" id="boardView" style="width:100%;">
 		    <tr class="table-active">
 			    <th colspan="1">제목</th>
 			    <th colspan="3">${board.boardTitle }</th>
@@ -24,7 +24,12 @@
 		    </tr>
 		    <tr>
 		    	<th>첨부파일</th>
-		    	<td>${board.filePath }</td>
+		    	<td>
+		    		<c:if test="${not empty board.fileName }">
+		    			<a href="/downFile.do?filepath=${board.filepath }&filename=${board.filename }">${board.fileName }</a>
+		    		</c:if>
+		    	</td>
+		    	
 			    <th>조회수</th>
 			    <td>${board.readCount }</td>
 		    </tr>
