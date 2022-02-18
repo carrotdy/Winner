@@ -45,13 +45,13 @@ public class BoardService {
 		
 		String pageNavi = "<ul class='pagination pagination-lg'>";
 		if(pageNo != 1) {
-			pageNavi += "<li class='page-item'><a href='/boardList.do?reqPage="+(reqPage-1)+"'>&lt;</a></li>";
+			pageNavi += "<li class='page-item disabled'><a class='page-link' href='/board.do?reqPage="+(reqPage-1)+"'>&lt;</a></li>";
 		}
 		for(int i=0;i<pageNaviSize;i++) {
 			if(pageNo == reqPage) {
-				pageNavi += "<li class='page-item active'><a href='/boardList.do?reqPage="+pageNo+"'>"+pageNo+"</a></li>";
+				pageNavi += "<li class='page-item active'><a class='page-link' href='/board.do?reqPage="+pageNo+"'>"+pageNo+"</a></li>";
 			}else {
-				pageNavi += "<li class='page-item'><a href='/boardList.do?reqPage="+pageNo+"'>"+pageNo+"</a></li>";
+				pageNavi += "<li class='page-item'><a class='page-link' href='/board.do?reqPage="+pageNo+"'>"+pageNo+"</a></li>";
 			}
 			pageNo++;
 			if(pageNo > totalPage) {
@@ -59,7 +59,7 @@ public class BoardService {
 			}
 		}
 		if(pageNo <= totalPage) {
-			pageNavi += "<li class='page-item'><a href='/boardList.do?reqPage="+(reqPage+1)+"'>&gt;</a><li>";
+			pageNavi += "<li class='page-item'><a class='page-link' href='/board.do?reqPage="+(reqPage+1)+"'>&gt;</a><li>";
 		}
 		pageNavi += "</ul>";
 		

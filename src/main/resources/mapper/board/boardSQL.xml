@@ -13,10 +13,11 @@
 			fileName,
 			filePath,
 			ncCount
-		from (select rownum as rnum, b.* from (SELECT * FROM board order by 1 desc)b) board where rnum between #{start} and #{end}
+		from (select rownum as rnum, b.* from (SELECT * FROM board order by 1 desc)b) board 
+		where rnum between #{start} and #{end}
 	</select>
 	
-	<select id="totalCount" parameterType="int">
+	<select id="totalCount" parameterType="int" resultType="int">
 		select count(*) from board
 	</select>
 	

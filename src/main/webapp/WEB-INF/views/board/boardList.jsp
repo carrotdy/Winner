@@ -25,15 +25,15 @@
 			    </tr>
 			    <c:forEach items="${list }" var="b" varStatus="i">
 			    	<tr class="table-default">
-			    		<td>${start + i.index+1 }</td>
+			    		<td>${start + i.index }</td>
 			    		<td><a href='/boardView.do?boardNo=${b.boardNo}' style="text-decoration:none;">${b.boardTitle}</a></td>
 			    		<td>${b.boardWriter}</td>
 			    		<td>${b.regDate}</td>
 			    		<td>${b.readCount}</td>
 			    	</tr>
 			    </c:forEach>
-			</table>
-			<div id="page-navi">${pageNavi }</div>
+			</table><br>
+			<div id="pageNavi">${pageNavi }</div>
 		</fieldset>
 	</div>
 	<c:import url="/WEB-INF/views/common/footer.jsp"/>
