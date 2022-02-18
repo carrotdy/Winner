@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.board.model.service.BoardService;
 import kr.or.board.model.vo.Board;
@@ -85,7 +86,7 @@ public class BoardController {
 	}
 
 	//글작성
-	@RequestMapping(value="/boardWrite.do")
+	@RequestMapping(value="/boardWrite.do", method=RequestMethod.POST)
 	public String boardWrite(Board b, Model model) {
 		System.out.println("1 : "+ b);
 		int result  = service.boardWrite(b);
