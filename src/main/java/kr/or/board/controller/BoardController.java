@@ -79,7 +79,7 @@ public class BoardController {
 		}else {
 			model.addAttribute("msg","게시물 삭제 실패ㅠㅠ");
 		}
-		model.addAttribute("loc","/board.do?boardNo=" + boardNo);
+		model.addAttribute("loc","/board.do?reqPage=1");
 		return "common/msg";
 	}
 	
