@@ -24,12 +24,17 @@
 		    </tr>
 		    <tr>
 		    	<th>첨부파일</th>
-		    	<td>
-		    		<c:if test="${not empty board.fileName }">
-		    			<a href="/downFile.do?filepath=${board.filepath }&filename=${board.filename }">${board.fileName }</a>
-		    		</c:if>
-		    	</td>
-		    	
+		    		<c:choose>
+						<c:when test="${not empty board.fileName }">
+							<td>
+								<img src="/resources/img/file.png" width="16px">
+								<a href="/fileDown?boardNo=${board.boardNo }">${board.fileName }</a>
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td>첨부파일 없음</td>
+						</c:otherwise>
+					</c:choose>
 			    <th>조회수</th>
 			    <td>${board.readCount }</td>
 		    </tr>

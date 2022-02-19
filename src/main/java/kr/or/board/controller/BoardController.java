@@ -83,23 +83,21 @@ public class BoardController {
 		return "common/msg";
 	}
 	
-	//글작성 이동
+	//게시글작성 이동
 	@RequestMapping(value="/boardWriteFrm.do")
 	public String boardWriteFrm() {
 		return "board/boardWrite";
 	}
 
-	//글작성
+	//게시글 작성
 	@RequestMapping(value="/boardWrite.do")
 	public String boardWrite(Board b, MultipartFile upfile, HttpServletRequest request, Model model) {
-		if(upfile.isEmpty()) {
-			
-		}else {
+		if(!upfile.isEmpty()) {  //첨부파일이 있는경우
 			String savePath =  request.getServletContext().getRealPath("/resources/upload/board/");
 			String filename = upfile.getOriginalFilename();
 			String onlyFilename = filename.substring(0,filename.indexOf("."));
 			String extention = filename.substring(filename.indexOf("."));
-			String filepath = null;
+			String filepath = "";
 			
 			int count = 0;
 			while(true) {    
@@ -114,31 +112,28 @@ public class BoardController {
 				}
 				count++;    
 			}  
-			try {
+			try {  //파일명 중복처리가 끝나면 파일 업로드
 				FileOutputStream fos = new FileOutputStream(new File(savePath+filepath));
 				BufferedOutputStream bos = new BufferedOutputStream(fos);
 				byte[] bytes = upfile.getBytes();
 				bos.write(bytes);
 				bos.close();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.toString());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.toString());
 			}
 			b.setFilePath(filepath);
+			b.setFileName(filename);
 		}
 		
-		System.out.println("1 : "+ b);
 		int result  = service.boardWrite(b);
-		System.out.println("2 : "+ result);
 		if(result > 0) {
 			model.addAttribute("msg","게시물 작성 성공~!");
 		}else {
 			model.addAttribute("msg","게시물 작성 실패ㅠㅠ");
 		}
-		model.addAttribute("loc","/boardWrite.do");
+		model.addAttribute("loc","/board.do?reqPage=1");
 		return "common/msg";
 	}
 	
