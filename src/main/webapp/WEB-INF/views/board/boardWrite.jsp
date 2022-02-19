@@ -32,12 +32,12 @@
 		    	</td>
 		    </tr>
 		    <c:if test="${sessionScope.m.memberLevel eq 1 }">   <!-- 나중에 0으로 변경 -->
-			<tr>
+<!-- 			<tr>
 				<th>고정글</th>
 		    	<td>
 		    		<input type="checkbox" name="priority">
 		    	</td>
-			</tr>
+			</tr> -->
 			</c:if>
 		    <tr>
 		    	<th>내용</th>

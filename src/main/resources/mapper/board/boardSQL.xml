@@ -50,7 +50,7 @@
 	
 	<insert id="boardWrite" parameterType="b">
 		INSERT INTO board VALUES
-			(BOARD_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{boardWriter},#{readCount},#{regDate},#{priority},#{fileName},#{filePath},#{ncCount})
+			(BOARD_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{boardWriter},#{readCount},to_char(sysdate,'yyyy-mm-dd hh24:mi'),0,#{fileName},#{filePath},#{ncCount})
 	</insert>
 
 </mapper>

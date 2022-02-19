@@ -2,7 +2,10 @@ package kr.or.board.controller;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.board.model.service.BoardService;
 import kr.or.board.model.vo.Board;
@@ -86,8 +90,46 @@ public class BoardController {
 	}
 
 	//글작성
-	@RequestMapping(value="/boardWrite.do", method=RequestMethod.POST)
-	public String boardWrite(Board b, Model model) {
+	@RequestMapping(value="/boardWrite.do")
+	public String boardWrite(Board b, MultipartFile upfile, HttpServletRequest request, Model model) {
+		if(upfile.isEmpty()) {
+			
+		}else {
+			String savePath =  request.getServletContext().getRealPath("/resources/upload/board/");
+			String filename = upfile.getOriginalFilename();
+			String onlyFilename = filename.substring(0,filename.indexOf("."));
+			String extention = filename.substring(filename.indexOf("."));
+			String filepath = null;
+			
+			int count = 0;
+			while(true) {    
+				if(count == 0) {
+					filepath = onlyFilename + extention;  
+				}else {
+					filepath = onlyFilename + "_" + count + extention;  
+				}
+				File checkFile = new File(savePath+filepath);  
+				if(!checkFile.exists()) { 
+					break;
+				}
+				count++;    
+			}  
+			try {
+				FileOutputStream fos = new FileOutputStream(new File(savePath+filepath));
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				byte[] bytes = upfile.getBytes();
+				bos.write(bytes);
+				bos.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			b.setFilePath(filepath);
+		}
+		
 		System.out.println("1 : "+ b);
 		int result  = service.boardWrite(b);
 		System.out.println("2 : "+ result);
@@ -107,7 +149,6 @@ public class BoardController {
 		System.out.println(filepath);
 		System.out.println(filename);
 		String file = savePath+filepath;
-		
 		
 		FileInputStream fis = new FileInputStream(file);
 		BufferedInputStream bis = new BufferedInputStream(fis);
