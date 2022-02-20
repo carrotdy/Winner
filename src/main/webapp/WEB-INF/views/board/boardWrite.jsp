@@ -31,14 +31,6 @@
 		    		<input type="file" name="upfile" accept=".jpg,.jpeg,.png,.gif">
 		    	</td>
 		    </tr>
-		    <c:if test="${sessionScope.m.memberLevel eq 1 }">   <!-- 나중에 0으로 변경 -->
-<!-- 			<tr>
-				<th>고정글</th>
-		    	<td>
-		    		<input type="checkbox" name="priority">
-		    	</td>
-			</tr> -->
-			</c:if>
 		    <tr>
 		    	<th>내용</th>
 		    	<td colspan="3" style="height:300px;">

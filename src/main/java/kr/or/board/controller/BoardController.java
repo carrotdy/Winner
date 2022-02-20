@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,7 +93,7 @@ public class BoardController {
 
 	//게시글 작성
 	@RequestMapping(value="/boardWrite.do")
-	public String boardWrite(Board b, MultipartFile upfile, HttpServletRequest request, Model model) {
+	public String boardWrite(String priority, Board b, MultipartFile upfile, HttpServletRequest request, Model model) {
 		if(!upfile.isEmpty()) {  //첨부파일이 있는경우
 			String savePath =  request.getServletContext().getRealPath("/resources/upload/board/");
 			String filename = upfile.getOriginalFilename();
@@ -137,15 +139,13 @@ public class BoardController {
 		return "common/msg";
 	}
 	
-	
-	@RequestMapping(value = "/downFile.do")
+	//파일다운로드
+	@RequestMapping(value="/fileDown.do")
 	public void downloadFile(String filepath, String filename, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/board/");
-		System.out.println(filepath);
-		System.out.println(filename);
 		String file = savePath+filepath;
 		
-		FileInputStream fis = new FileInputStream(file);
+		FileInputStream fis = new FileInputStream(file);  // 파일에 입출력을 하기 위한 스트림
 		BufferedInputStream bis = new BufferedInputStream(fis);
 		ServletOutputStream sos = response.getOutputStream();
 		BufferedOutputStream bos = new BufferedOutputStream(sos);
@@ -153,16 +153,16 @@ public class BoardController {
 		String resFilename = "";
 		
 		boolean bool = request.getHeader("user-agent").indexOf("MSIE") != -1 || request.getHeader("user-agent").indexOf("Trident") != -1;
-		if(bool) {
+		if(bool) {   //브라우저가 IE인경우
 			resFilename = URLEncoder.encode(filename,"UTF-8");
 			resFilename = resFilename.replaceAll("\\\\", "%20");
-		}else {
+		}else {   //그외 다른 브라우저인 경우
 			resFilename = new String(filename.getBytes("UTF-8"),"ISO-8859-1");
 		}
 		response.setContentType("application/octet-stream;charset=utf-8");
-		response.setHeader("Content-Disposition", "attachment;filename="+resFilename);
+		response.setHeader("Content-Disposition", "attachment;filename="+resFilename);  //다운로드할 파일 이름 지정
 		
-		while(true) {
+		while(true) {  //파일전송
 			int read = bis.read();
 			if(read != -1) {
 				bos.write(read);
@@ -170,9 +170,7 @@ public class BoardController {
 				break;
 			}
 		}
-		
 		bis.close();
 		bos.close();
-		
 	}
 }

@@ -28,7 +28,7 @@
 						<c:when test="${not empty board.fileName }">
 							<td>
 								<img src="/resources/img/file.png" width="16px">
-								<a href="/fileDown?boardNo=${board.boardNo }">${board.fileName }</a>
+								<a href="/fileDown.do?filepath=${board.filePath }&filename=${board.fileName }">${board.fileName }</a>
 							</td>
 						</c:when>
 						<c:otherwise>
