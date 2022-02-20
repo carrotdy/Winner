@@ -52,7 +52,14 @@
 		INSERT INTO board VALUES
 			(BOARD_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{boardWriter},#{readCount},to_char(sysdate,'yyyy-mm-dd hh24:mi'),#{priority},#{fileName},#{filePath},#{ncCount})
 	</insert>
-
+	
+	<select id="priority" parameterType="b" resultType="b">
+		select * from board where priority=1 order by 1 desc
+	</select>
+	
+	<select id="fixPageCount" parameterType="int" resultType="int">
+		select count(*)as cnt from board where priority=1
+	</select>
 </mapper>
 
 

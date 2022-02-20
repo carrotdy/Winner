@@ -24,13 +24,26 @@
 			      <th>조회수</th>
 			    </tr>
 			    <c:forEach items="${list }" var="b" varStatus="i">
-			    	<tr class="table-default">
-			    		<td>${start + i.index }</td>
-			    		<td><a href='/boardView.do?boardNo=${b.boardNo}' style="text-decoration:none;">${b.boardTitle}</a></td>
-			    		<td>${b.boardWriter}</td>
-			    		<td>${b.regDate}</td>
-			    		<td>${b.readCount}</td>
-			    	</tr>
+			    <c:choose>
+			    	<c:when test="${b.priority == 0}">
+			    		<tr class="table-default">
+				    		<td>${start + i.index +1 - fixPage}</td>
+				    		<td><a href='/boardView.do?boardNo=${b.boardNo}' style="text-decoration:none;">${b.boardTitle}</a></td>
+				    		<td>${b.boardWriter}</td>
+				    		<td>${b.regDate}</td>
+			    			<td>${b.readCount}</td>
+			    		</tr>
+			    	</c:when>
+			    	<c:otherwise>
+				    	<tr class="table-default">
+				    		<td><img src="resources/img/bell.png" style="width:20px; height:20px;"></td> 
+				    		<td><a href='/boardView.do?boardNo=${b.boardNo}' style="text-decoration:none;">${b.boardTitle}</a></td>
+				    		<td>${b.boardWriter}</td>
+				    		<td>${b.regDate}</td>
+				    		<td>${b.readCount}</td>
+				    	</tr>
+			    	</c:otherwise>
+			     </c:choose>
 			    </c:forEach>
 			</table><br>
 			<div id="pageNavi">${pageNavi }</div>

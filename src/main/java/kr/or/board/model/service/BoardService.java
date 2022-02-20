@@ -16,6 +16,10 @@ public class BoardService {
 	private BoardDao dao;
 
 	public HashMap<String, Object> boardList(int reqPage) {
+		
+		//관리자 고정게시물
+		ArrayList<Board> fixList = dao.priority();
+		
 		int numPerPage = 10;  //한페이지당 게시물 수
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
@@ -63,8 +67,14 @@ public class BoardService {
 		}
 		pageNavi += "</ul>";
 		
+		int fixPage = dao.fixPageCount();
+		
+		fixList.addAll(list);
+		
+		map.put("list", fixList);
 		map.put("pageNavi", pageNavi);
-		map.put("list",	list);
+		map.put("start", start);
+		map.put("fixPage",fixPage);
 		
 		return map;
 	}

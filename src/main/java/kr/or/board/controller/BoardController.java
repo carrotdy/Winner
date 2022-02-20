@@ -37,9 +37,10 @@ public class BoardController {
 	public String board(int reqPage, Model model) {
 		HashMap<String, Object> map = service.boardList(reqPage);
 
-		model.addAttribute("pageNavi", map.get("pageNavi"));
 		model.addAttribute("list", map.get("list"));
+		model.addAttribute("pageNavi", map.get("pageNavi"));
 		model.addAttribute("start", map.get("start"));
+		model.addAttribute("fixPage", map.get("fixPage"));
 		return "board/boardList";
 	}
 	
@@ -99,7 +100,7 @@ public class BoardController {
 			String filename = upfile.getOriginalFilename();
 			String onlyFilename = filename.substring(0,filename.indexOf("."));
 			String extention = filename.substring(filename.indexOf("."));
-			String filepath = "";
+			String filepath = "";			
 			
 			int count = 0;
 			while(true) {    
@@ -128,7 +129,7 @@ public class BoardController {
 			b.setFilePath(filepath);
 			b.setFileName(filename);
 		}
-		
+		System.out.println("b =" + b);
 		int result  = service.boardWrite(b);
 		if(result > 0) {
 			model.addAttribute("msg","게시물 작성 성공~!");

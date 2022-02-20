@@ -45,5 +45,14 @@ public class BoardDao {
 		return session.selectOne("board.totalCount");
 	}
 
+	public ArrayList<Board> priority() {
+		List<Board> list = session.selectList("board.priority");
+		return (ArrayList<Board>)list;
+	}
+
+	public int fixPageCount() {
+		return session.selectOne("board.fixPageCount");
+	}
+
 
 }

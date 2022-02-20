@@ -31,6 +31,15 @@
 		    		<input type="file" name="upfile" accept=".jpg,.jpeg,.png,.gif">
 		    	</td>
 		    </tr>
+ 			<c:if test="${sessionScope.m.memberLevel eq 1 }">   <!-- 나중에 0으로 변경 -->
+ 			<tr>
+				<th>고정글</th>
+		    	<td>
+					<input type="checkbox" name="priority" value='1' id="check">
+					<input type="hidden" name="priority" value='0' id="check_hidden"/>
+		    	</td>
+		    </tr>
+		    </c:if>
 		    <tr>
 		    	<th>내용</th>
 		    	<td colspan="3" style="height:300px;">
@@ -47,4 +56,10 @@
 		</div>
 	<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
+<script>
+	//고정게시물 체크했을 때 1, 체크 안했을 때 0
+	if(document.getElementById("check").checked) {
+	    document.getElementById("check_hidden").disabled = true;
+	}
+</script>
 </html>
