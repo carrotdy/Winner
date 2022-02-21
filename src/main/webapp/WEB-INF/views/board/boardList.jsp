@@ -27,7 +27,7 @@
 			    <c:choose>
 			    	<c:when test="${b.priority == 0}">
 			    		<tr class="table-default">
-				    		<td>${start + i.index +1 - fixPage}</td>
+				    		<td>${start + i.index - fixPage}</td>
 				    		<td><a href='/boardView.do?boardNo=${b.boardNo}' style="text-decoration:none;">${b.boardTitle}</a></td>
 				    		<td>${b.boardWriter}</td>
 				    		<td>${b.regDate}</td>

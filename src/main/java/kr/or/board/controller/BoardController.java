@@ -94,7 +94,7 @@ public class BoardController {
 
 	//게시글 작성
 	@RequestMapping(value="/boardWrite.do")
-	public String boardWrite(String priority, Board b, MultipartFile upfile, HttpServletRequest request, Model model) {
+	public String boardWrite(Board b, MultipartFile upfile, HttpServletRequest request, Model model) {
 		if(!upfile.isEmpty()) {  //첨부파일이 있는경우
 			String savePath =  request.getServletContext().getRealPath("/resources/upload/board/");
 			String filename = upfile.getOriginalFilename();

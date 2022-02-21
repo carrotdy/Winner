@@ -14,7 +14,7 @@
 			filePath,
 			ncCount
 		from (select rownum as rnum, b.* from (SELECT * FROM board order by 1 desc)b) board 
-		where rnum between #{start} and #{end}
+		where (rnum between #{start} and #{end}) and priority=0
 	</select>
 	
 	<select id="totalCount" parameterType="int" resultType="int">
