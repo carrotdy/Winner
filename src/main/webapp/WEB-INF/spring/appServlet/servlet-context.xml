@@ -52,6 +52,6 @@
 	<context:component-scan base-package="kr.or.iei" />
 	<context:component-scan base-package="kr.or.member"/>
 	<context:component-scan base-package="kr.or.board"/>
-	
+	<context:component-scan base-package="kr.or.product"/>
 	
 </beans:beans>
