@@ -36,7 +36,7 @@ public class BoardController {
 	@RequestMapping(value="/board.do")
 	public String board(int reqPage, Model model) {
 		HashMap<String, Object> map = service.boardList(reqPage);
-
+	
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("pageNavi", map.get("pageNavi"));
 		model.addAttribute("start", map.get("start"));

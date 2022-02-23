@@ -56,7 +56,7 @@
                 		</c:choose>
                 	</c:otherwise>
                   </c:choose>
-                <li class="header-item"><a href="/noticeList.do?reqPage=1" style="color:#374859">공지사항</a></li>
+                <li class="header-item"><a href="/board.do?reqPage=1" style="color:#374859">자유게시판</a></li>
                 <li class="header-item" style="margin-right: 0;" ><a href="/qnaList.do" style="color:#374859">QnA</a></li>
             </ul>
       </div>

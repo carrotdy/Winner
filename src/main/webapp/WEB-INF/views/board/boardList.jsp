@@ -11,7 +11,7 @@
 	<c:import url="/WEB-INF/views/common/header.jsp"/>
 	<div class="container">
 		<fieldset>
-			<legend>자유게시판</legend>
+			<h2>자유게시판</h2> 
 			<c:if test="${not empty sessionScope.m && (sessionScope.m.memberLevel eq 0 || sessionScope.m.memberLevel eq 1)}"> 
 				<a class="btn btn-secondary" href='/boardWriteFrm.do' style="float:right; margin-bottom:5px;">글쓰기</a>
 			</c:if>
@@ -25,7 +25,7 @@
 			    </tr>
 			    <c:forEach items="${list }" var="b" varStatus="i">
 			    <c:choose>
-			    	<c:when test="${b.priority == 0}">
+			    	<c:when test="${b.priority == 0}">  <!-- 고정게시물이 아닐 때 -->
 			    		<tr class="table-default">
 				    		<td>${start + i.index - fixPage}</td>
 				    		<td><a href='/boardView.do?boardNo=${b.boardNo}' style="text-decoration:none;">${b.boardTitle}</a></td>
@@ -35,7 +35,7 @@
 			    		</tr>
 			    	</c:when>
 			    	<c:otherwise>
-				    	<tr class="table-default">
+				    	<tr class="table-default" style="background-color:#EAEAEA;">		<!-- 고정게시물 -->
 				    		<td><img src="resources/img/bell.png" style="width:20px; height:20px;"></td> 
 				    		<td><a href='/boardView.do?boardNo=${b.boardNo}' style="text-decoration:none;">${b.boardTitle}</a></td>
 				    		<td>${b.boardWriter}</td>

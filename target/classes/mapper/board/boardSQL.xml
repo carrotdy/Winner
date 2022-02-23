@@ -54,7 +54,18 @@
 	</insert>
 	
 	<select id="priority" parameterType="b" resultType="b">
-		select * from board where priority=1 order by 1 desc
+		select 
+			board_no as boardNo,
+			board_title as boardTitle,
+			board_content as boardContent,
+			board_writer as boardWriter,
+			readCount,
+			regDate,
+			priority,
+			fileName,
+			filePath,
+			ncCount
+		from board where priority=1 order by 1 desc
 	</select>
 	
 	<select id="fixPageCount" parameterType="int" resultType="int">

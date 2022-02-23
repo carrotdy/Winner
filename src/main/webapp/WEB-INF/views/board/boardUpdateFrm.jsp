@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp"/>
@@ -28,7 +29,20 @@
 		    </tr>
 		    <tr>
 		    	<th>첨부파일</th>
-		    	<td>${board.filePath }</td>
+		    	<td>
+		    	<input type="hidden" name="status" value="1"> <!-- 삭제 유무 확인 --> 
+					<c:choose>
+						<c:when test="${not empty board.fileName }">  <!-- 첨부파일이 있을 경우 -->
+							<img src="/resources/img/file.png" width="16px";>
+							<span class="fileDel">${board.fileName }</span>
+							<button type="button" id="deleteBtn" class="btn btn-primary btn-sm fileDel">삭제</button>
+							<input type="file" name="upfile" style="display: none;">
+						</c:when>
+						<c:otherwise>
+							<input type="file" name="upfile">
+						</c:otherwise>
+					</c:choose>
+				</td>
 			    <th>조회수</th>
 			    <td>${board.readCount }</td>
 		    </tr>
@@ -47,6 +61,15 @@
 	    </table>
 	    </form>
 	</div>
+	<script>
+	$(function(){
+		$("#deleteBtn").click(function(){
+			$(".fileDel").hide();
+			$(this).next().show();
+			$("[name=status]").val(2);
+		});
+	});
+	</script>
 	<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

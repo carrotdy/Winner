@@ -10,7 +10,7 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp"/>
 	<div class="container">
-		<h2>자유게시판</h2>
+		<h2>자유게시판</h2><br>
 		<table class="table" id="boardView" style="width:100%;">
 		    <tr class="table-active">
 			    <th colspan="1">제목</th>
