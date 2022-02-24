@@ -62,7 +62,41 @@ public class BoardController {
 	
 	//수정
 	@RequestMapping(value="/boardUpdate.do")
-	public String boardUpdate(Board b, Model model) {
+	public String boardUpdate(Board b, MultipartFile upfile, Model model, HttpServletRequest request) {
+		if(!upfile.isEmpty()) {  //첨부파일이 있는경우
+			String savePath =  request.getServletContext().getRealPath("/resources/upload/board/");
+			String filename = upfile.getOriginalFilename();
+			String onlyFilename = filename.substring(0,filename.indexOf("."));
+			String extention = filename.substring(filename.indexOf("."));
+			String filepath = "";			
+			
+			int count = 0;
+			while(true) {    
+				if(count == 0) {
+					filepath = onlyFilename + extention;  
+				}else {
+					filepath = onlyFilename + "_" + count + extention;  
+				}
+				File checkFile = new File(savePath+filepath);  
+				if(!checkFile.exists()) { 
+					break;
+				}
+				count++;    
+			}  
+			try {  //파일명 중복처리가 끝나면 파일 업로드
+				FileOutputStream fos = new FileOutputStream(new File(savePath+filepath));
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				byte[] bytes = upfile.getBytes();
+				bos.write(bytes);
+				bos.close();
+			} catch (FileNotFoundException e) {
+				System.out.println(e.toString());
+			} catch (IOException e) {
+				System.out.println(e.toString());
+			}
+			b.setFilePath(filepath);
+			b.setFileName(filename);
+		}
 		int result = service.boardUpdate(b);
 		if(result > 0) {
 			model.addAttribute("msg","게시물 수정 완료~!");

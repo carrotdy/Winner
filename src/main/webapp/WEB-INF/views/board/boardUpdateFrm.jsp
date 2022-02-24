@@ -12,7 +12,7 @@
 	<c:import url="/WEB-INF/views/common/header.jsp"/>
 	<div class="container">
 		<h2>자유게시판 수정</h2>
-		<form action="/boardUpdate.do?boardNo=${board.boardNo }">
+		<form action="/boardUpdate.do?boardNo=${board.boardNo }" method="post" enctype="multipart/form-data">
 		<table class="table" id="freeView" style="width:100%;">
 		    <tr class="table-active">
 			    <th colspan="1">제목</th>
@@ -34,9 +34,11 @@
 					<c:choose>
 						<c:when test="${not empty board.fileName }">  <!-- 첨부파일이 있을 경우 -->
 							<img src="/resources/img/file.png" width="16px";>
-							<span class="fileDel">${board.fileName }</span>
+							<span class="fileDel">${board.filePath }</span>
 							<button type="button" id="deleteBtn" class="btn btn-primary btn-sm fileDel">삭제</button>
 							<input type="file" name="upfile" style="display: none;">
+					    	<input type="hidden" name="fileName" value="${board.fileName }">
+					    	<input type="hidden" name="filePath" value="${board.filePath }">
 						</c:when>
 						<c:otherwise>
 							<input type="file" name="upfile">
