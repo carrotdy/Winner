@@ -48,6 +48,15 @@
 			    <th>조회수</th>
 			    <td>${board.readCount }</td>
 		    </tr>
+		    <c:if test="${sessionScope.m.memberLevel eq 1}"> <!-- 나중에 0으로 변경 -->
+		    <tr>
+		    	<th>고정글</th>
+		    	<td>
+		    		<input type="checkbox" name="priority" id="check" value='1'>
+		    		<input type="hidden" name="priority" value='0' id="check_hidden"/>
+		    	</td>
+		    </tr>
+		    </c:if>
 		    <tr>
 		    	<th>내용</th>
 		    	<td colspan="3" style="height:300px;">
@@ -71,6 +80,10 @@
 			$("[name=status]").val(2);
 		});
 	});
+	
+	if(document.getElementById("check").checked) {
+	    document.getElementById("check_hidden").disabled = true;
+	}
 	</script>
 	<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>

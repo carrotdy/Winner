@@ -43,6 +43,7 @@
 	<update id="boardUpdate" parameterType="b">
 		update board set board_title=#{boardTitle}, 
 			board_content=#{boardContent},
+			priority=#{priority},
 			filePath=#{filePath}
 			where board_no=#{boardNo}
 	</update>

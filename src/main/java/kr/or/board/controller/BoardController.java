@@ -100,6 +100,7 @@ public class BoardController {
 		int result = service.boardUpdate(b);
 		if(result > 0) {
 			model.addAttribute("msg","게시물 수정 완료~!");
+			System.out.println("b :"+b);
 		}else {
 			model.addAttribute("msg","게시물 수정 실패ㅠㅠ");
 		}
