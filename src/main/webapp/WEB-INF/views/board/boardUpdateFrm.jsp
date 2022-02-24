@@ -48,7 +48,7 @@
 			    <th>조회수</th>
 			    <td>${board.readCount }</td>
 		    </tr>
-		    <c:if test="${sessionScope.m.memberLevel eq 1}"> <!-- 나중에 0으로 변경 -->
+		    <c:if test="${sessionScope.m.memberLevel eq 0}"> 
 		    <tr>
 		    	<th>고정글</th>
 		    	<td>
