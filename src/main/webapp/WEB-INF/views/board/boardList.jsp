@@ -12,9 +12,19 @@
 	<div class="container">
 		<fieldset>
 			<h2>자유게시판</h2> 
-			<c:if test="${not empty sessionScope.m && (sessionScope.m.memberLevel eq 0 || sessionScope.m.memberLevel eq 1)}"> 
+			<c:if test="${not empty sessionScope.m && (sessionScope.m.memberLevel eq 0 || sessionScope.m.memberLevel eq 1)}">
 				<a class="btn btn-secondary" href='/boardWriteFrm.do' style="float:right; margin-bottom:5px;">글쓰기</a>
-			</c:if>
+			</c:if>&emsp;
+			<a class="search" style="float:left;">
+				<select name="searchType">
+				    <option value="title"<c:out value="${b.searchType eq 'title' ? 'selected' : ''}"/>>제목</option>
+				    <option value="content"<c:out value="${b.searchType eq 'content' ? 'selected' : ''}"/>>내용</option>
+				    <option value="writer"<c:out value="${b.searchType eq 'writer' ? 'selected' : ''}"/>>작성자</option>
+				    <option value="tc"<c:out value="${b.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+			    </select>
+			    <input type="text" name="keyword" value="${b.keyword}"/>
+			    <input type="submit" class="btn btn-secondary" value="검색">
+			</a>
 			<table class="table table-hover">
 			    <tr class="table-active">
 			      <th scope="row">번호</th>
