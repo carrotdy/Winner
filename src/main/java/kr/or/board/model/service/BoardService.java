@@ -15,7 +15,7 @@ public class BoardService {
 	@Autowired
 	private BoardDao dao;
 
-	public HashMap<String, Object> boardList(int reqPage) {
+	public HashMap<String, Object> boardList(int reqPage, String keyword) {
 		
 		//관리자 고정게시물
 		ArrayList<Board> fixList = dao.priority();
@@ -27,6 +27,7 @@ public class BoardService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("keyword", keyword);
 		
 		ArrayList<Board> list = dao.boardList(map);
 		
@@ -99,6 +100,11 @@ public class BoardService {
 	@Transactional
 	public int boardWrite(Board b) {
 		return dao.boardWrite(b);
+	}
+
+	public ArrayList<Board> boardSearch(String keyword) {
+		ArrayList<Board> list = dao.boardSearch(keyword);
+		return list;
 	}
 
 

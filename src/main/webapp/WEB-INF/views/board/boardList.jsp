@@ -12,6 +12,7 @@
 	<div class="container">
 		<fieldset>
 			<h2>자유게시판</h2> 
+			<form action="/boardSearch.do?reqPage=1" method="post">
 			<c:if test="${not empty sessionScope.m && (sessionScope.m.memberLevel eq 0 || sessionScope.m.memberLevel eq 1)}">
 				<a class="btn btn-secondary" href='/boardWriteFrm.do' style="float:right; margin-bottom:5px;">글쓰기</a>
 			</c:if>&emsp;
@@ -57,6 +58,7 @@
 			    </c:forEach>
 			</table><br>
 			<div id="pageNavi">${pageNavi }</div>
+		</form>
 		</fieldset>
 	</div>
 	<c:import url="/WEB-INF/views/common/footer.jsp"/>

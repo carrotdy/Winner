@@ -34,8 +34,8 @@ public class BoardController {
 	
 	//목록
 	@RequestMapping(value="/board.do")
-	public String board(int reqPage, Model model) {
-		HashMap<String, Object> map = service.boardList(reqPage);
+	public String board(int reqPage, String keyword, Model model) {
+		HashMap<String, Object> map = service.boardList(reqPage, keyword);
 	
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("pageNavi", map.get("pageNavi"));
@@ -208,5 +208,12 @@ public class BoardController {
 		}
 		bis.close();
 		bos.close();
+	}
+	
+	@RequestMapping(value="/boardSearch.do")
+	public String boardSearch(int reqPage, String keyword, Model model) {
+		ArrayList<Board> list = service.boardSearch(keyword);
+		model.addAttribute("b",list);
+		return "board/boardList";
 	}
 }

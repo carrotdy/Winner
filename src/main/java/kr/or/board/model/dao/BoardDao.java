@@ -54,5 +54,10 @@ public class BoardDao {
 		return session.selectOne("board.fixPageCount");
 	}
 
+	public ArrayList<Board> boardSearch(String keyword) {
+		List<Board> list = session.selectList("board.boardSearch",keyword);
+		return (ArrayList<Board>)list;
+	}
+
 
 }
