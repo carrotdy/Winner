@@ -54,9 +54,14 @@ public class BoardDao {
 		return session.selectOne("board.fixPageCount");
 	}
 
-	public ArrayList<Board> boardSearch(String keyword) {
-		List<Board> list = session.selectList("board.boardSearch",keyword);
+	public ArrayList<Board> boardSearch(HashMap<String, Object> map) {
+		List<Board> list = session.selectList("board.boardSearch",map);
+		System.out.println("map="+map);
 		return (ArrayList<Board>)list;
+	}
+
+	public int totalSearch(HashMap<String, Object> map) {
+		return session.selectOne("board.totalSearch",map);
 	}
 
 

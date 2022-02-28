@@ -76,25 +76,40 @@
 		select count(*)as cnt from board where priority=1
 	</select>
 	
-	<select id="boardSearch" parameterType="String" resultType="b">
-		select * from board 
-		<if test="searchType != null">
-			<choose>
-				<when test="searchType.equals('boardTitle')">
-					where BOARD_TITLE like '%'||#{keyword}||'%'
-				</when>
-				<when test="searchType.equals('boardContent')">
-					where BOARD_CONTENT like '%'||#{keyword}||'%'
-				</when>
-				<when test="searchType.equals('boardWriter')">
-					where BOARD_WRITER like '%'||#{keyword}||'%'
-				</when>
-				<when test="searchType.equals('boardTitle') or searchType.equals('boardTitle')">
-					where (BOARD_TITLE like '%'||#{keyword}||'%' or BOARD_CONTENT LIKE '%' || #{keyword} || '%')
-				</when>
-			</choose>
-		</if>
+	<select id="boardSearch" parameterType="map" resultType="b">
+		select *
+		from (select rownum as rnum, b.* from (SELECT * FROM board 
+			<if test="searchType != null and searchType.equals('boardTitle')">
+				where BOARD_TITLE like '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType != null and searchType.equals('boardContent')">
+				where BOARD_CONTENT like '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType != null and searchType.equals('boardWriter')">
+				where BOARD_WRITER like '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType != null and (searchType.equals('boardTitle') or searchType.equals('boardContent'))">
+				where (BOARD_TITLE like '%'||#{keyword}||'%' or BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+			</if>
+		order by 1 desc)b) 
+		where (rnum between #{start} and #{end}) 
 	</select>
+	
+	<select id="totalSearch" parameterType="map" resultType="int">
+		select count(*) from board
+			<if test="searchType != null and searchType.equals('boardTitle')">
+				where BOARD_TITLE like '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType != null and searchType.equals('boardContent')">
+				where BOARD_CONTENT like '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType != null and searchType.equals('boardWriter')">
+				where BOARD_WRITER like '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType != null and (searchType.equals('boardTitle') or searchType.equals('boardContent'))">
+				where (BOARD_TITLE like '%'||#{keyword}||'%' or BOARD_CONTENT LIKE '%' || #{keyword} || '%')
+			</if>
+	</select> 
 </mapper>
 
 

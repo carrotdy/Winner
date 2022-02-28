@@ -18,12 +18,12 @@
 			</c:if>&emsp;
 			<a class="search" style="float:left;">
 				<select name="searchType">
-				    <option value="title"<c:out value="${b.searchType eq 'title' ? 'selected' : ''}"/>>제목</option>
-				    <option value="content"<c:out value="${b.searchType eq 'content' ? 'selected' : ''}"/>>내용</option>
-				    <option value="writer"<c:out value="${b.searchType eq 'writer' ? 'selected' : ''}"/>>작성자</option>
-				    <option value="tc"<c:out value="${b.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+				    <option value="boardTitle"<c:out value="${searchType eq 'boardTitle' ? 'selected' : ''}"/>>제목</option>
+				    <option value="boardContent"<c:out value="${searchType eq 'boardContent' ? 'selected' : ''}"/>>내용</option>
+				    <option value="boardWriter"<c:out value="${searchType eq 'boardWriter' ? 'selected' : ''}"/>>작성자</option>
+				    <option value="tc"<c:out value="${searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
 			    </select>
-			    <input type="text" name="keyword" value="${b.keyword}"/>
+			    <input type="text" name="keyword"/>
 			    <input type="submit" class="btn btn-secondary" value="검색">
 			</a>
 			<table class="table table-hover">

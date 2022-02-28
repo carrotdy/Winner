@@ -211,9 +211,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/boardSearch.do")
-	public String boardSearch(int reqPage, String keyword, Model model) {
-		ArrayList<Board> list = service.boardSearch(keyword);
-		model.addAttribute("b",list);
+	public String boardSearch(int reqPage, Board b, Model model) {
+		HashMap<String, Object> data = service.boardSearch(reqPage, b);
+		model.addAttribute("pageNavi", data.get("pageNavi"));
+		model.addAttribute("list", data.get("list"));
+		model.addAttribute("start", data.get("start"));
 		return "board/boardList";
 	}
 }
