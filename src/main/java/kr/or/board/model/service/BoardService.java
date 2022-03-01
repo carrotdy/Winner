@@ -102,6 +102,7 @@ public class BoardService {
 	}
 
 	public HashMap<String, Object> boardSearch(int reqPage, Board b) {
+		
 		int numPerPage = 10;  //한페이지당 게시물 수
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
@@ -110,8 +111,7 @@ public class BoardService {
 		map.put("start", start);
 		map.put("end", end);
 		map.put("keyword", b.getKeyword());
-		map.put("SearchType", b.getSearchType());
-		
+		map.put("searchType", b.getSearchType());
 		ArrayList<Board> list = dao.boardSearch(map);
 		
 		int totalCount = dao.totalSearch(map);  
@@ -151,11 +151,11 @@ public class BoardService {
 		}
 		pageNavi += "</ul>";
 		
-		map.put("list", list);
-		map.put("pageNavi", pageNavi);
-		map.put("start", start);
-		System.out.println("b2="+b);
-		return map;
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("pageNavi", pageNavi);
+		data.put("list", list);
+		data.put("start", start);
+		return data;
 	}
 
 

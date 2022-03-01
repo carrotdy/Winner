@@ -55,8 +55,7 @@ public class BoardDao {
 	}
 
 	public ArrayList<Board> boardSearch(HashMap<String, Object> map) {
-		List<Board> list = session.selectList("board.boardSearch",map);
-		System.out.println("map="+map);
+		List<Board> list = session.selectList("board.boardSearch", map);
 		return (ArrayList<Board>)list;
 	}
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="board">
+	<!-- 게시물 리스트 -->
 	<select id="boardList" parameterType="map" resultType="b">
 		select 
 			board_no as boardNo,
@@ -17,10 +18,12 @@
 		where (rnum between #{start} and #{end}) and priority=0
 	</select>
 	
+	<!-- 총 게시물 수 -->
 	<select id="totalCount" parameterType="int" resultType="int">
 		select count(*) from board
 	</select>
 	
+	<!-- 게시물 상세보기 -->
 	<select id="boardView" parameterType="b" resultType="b">
 		select
 			board_no as boardNo,
@@ -36,10 +39,12 @@
 		from board where board_no=#{boardNo}
 	</select>
 	
+	<!-- 조회수 -->
 	<update id="boardHit" parameterType="b">
 		update board set readCount=readCount+1 where board_no=#{boardNo}
 	</update>
 	
+	<!-- 게시글 수정 -->
 	<update id="boardUpdate" parameterType="b">
 		update board set board_title=#{boardTitle}, 
 			board_content=#{boardContent},
@@ -48,15 +53,18 @@
 			where board_no=#{boardNo}
 	</update>
 	
+	<!-- 게시글 삭제 -->
 	<delete id="boardDelete" parameterType="int">
 		delete from board where board_no=#{boardNo}
 	</delete>
 	
+	<!-- 게시글 작성 -->
 	<insert id="boardWrite" parameterType="b">
 		INSERT INTO board VALUES
 			(BOARD_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{boardWriter},#{readCount},to_char(sysdate,'yyyy-mm-dd hh24:mi'),#{priority},#{fileName},#{filePath},#{ncCount})
 	</insert>
 	
+	<!-- 고정페이지 -->
 	<select id="priority" parameterType="b" resultType="b">
 		select 
 			board_no as boardNo,
@@ -72,43 +80,52 @@
 		from board where priority=1 order by 1 desc
 	</select>
 	
+	<!-- 고정페이지 게시물 수 -->
 	<select id="fixPageCount" parameterType="int" resultType="int">
 		select count(*)as cnt from board where priority=1
 	</select>
 	
-	<select id="boardSearch" parameterType="map" resultType="b">
-		select *
-		from (select rownum as rnum, b.* from (SELECT * FROM board 
-			<if test="searchType != null and searchType.equals('boardTitle')">
+	<!-- 검색 조건에 해당하는 중복코드 -->
+	<sql id="search">  
+		<choose>
+			<when test="searchType != null and searchType.equals('boardTitle')">
 				where BOARD_TITLE like '%'||#{keyword}||'%'
-			</if>
-			<if test="searchType != null and searchType.equals('boardContent')">
+			</when>
+			<when test="searchType != null and searchType.equals('boardContent')">
 				where BOARD_CONTENT like '%'||#{keyword}||'%'
-			</if>
-			<if test="searchType != null and searchType.equals('boardWriter')">
+			</when>
+			<when test="searchType != null and searchType.equals('boardWriter')">
 				where BOARD_WRITER like '%'||#{keyword}||'%'
-			</if>
-			<if test="searchType != null and (searchType.equals('boardTitle') or searchType.equals('boardContent'))">
-				where (BOARD_TITLE like '%'||#{keyword}||'%' or BOARD_CONTENT LIKE '%'||#{keyword}||'%')
-			</if>
+			</when>
+			<when test="searchType != null and searchType.equals('tc')">
+				where (BOARD_TITLE like '%'||#{keyword}||'%' ) or (BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+			</when>
+		</choose>
+	</sql>
+	
+	<!-- 게시판 검색 -->
+	<select id="boardSearch" parameterType="map" resultType="b">
+		select 
+			board_no as boardNo,
+			board_title as boardTitle,
+			board_content as boardContent,
+			board_writer as boardWriter,
+			readCount,
+			regDate,
+			priority,
+			fileName,
+			filePath,
+			ncCount
+		from (select rownum as rnum, b.* from (SELECT * FROM board 
+			<include refid="search"></include>
 		order by 1 desc)b) 
 		where (rnum between #{start} and #{end}) 
 	</select>
 	
+	<!-- 검색 한 게시물 수 조회 -->
 	<select id="totalSearch" parameterType="map" resultType="int">
 		select count(*) from board
-			<if test="searchType != null and searchType.equals('boardTitle')">
-				where BOARD_TITLE like '%'||#{keyword}||'%'
-			</if>
-			<if test="searchType != null and searchType.equals('boardContent')">
-				where BOARD_CONTENT like '%'||#{keyword}||'%'
-			</if>
-			<if test="searchType != null and searchType.equals('boardWriter')">
-				where BOARD_WRITER like '%'||#{keyword}||'%'
-			</if>
-			<if test="searchType != null and (searchType.equals('boardTitle') or searchType.equals('boardContent'))">
-				where (BOARD_TITLE like '%'||#{keyword}||'%' or BOARD_CONTENT LIKE '%' || #{keyword} || '%')
-			</if>
+			<include refid="search"></include>
 	</select> 
 </mapper>
 
