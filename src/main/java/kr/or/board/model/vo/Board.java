@@ -14,6 +14,6 @@ public class Board {
 	private String fileName;		// 파일이름
 	private String filePath;		// 첨부파일경로
 	private int ncCount;			// 댓글수
-	private String searchType;
-	private String keyword;
+	private String searchType;		// 검색타입(내용,작성자...)
+	private String keyword;			// 검색어
 }

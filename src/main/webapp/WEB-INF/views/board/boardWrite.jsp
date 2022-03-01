@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp"/>
@@ -48,7 +49,7 @@
 		    </tr>
 		    <tr>
 		    	<th colspan="4" style="text-align:center;">
-		    		<button type="submit" class="btn btn-primary">등록하기</button>
+		    		<button type="submit" class="btn btn-primary" id="register">등록하기</button>
 		    	</th>
 		    </tr>
 	    </table>
@@ -57,9 +58,22 @@
 	<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 <script>
-	//고정게시물 체크했을 때 1, 체크 안했을 때 0
-	if(document.getElementById("check").checked) {
-	    document.getElementById("check_hidden").disabled = true;
-	}
+	$(function(){
+		$("#register").click(function(){
+		    if($('[name=boardTitle]').val() == ""){
+	          alert('제목을 입력하세요.');
+	          return false;
+	        }else if($('[name=boardContent]').val() == ""){
+	          alert('내용을 입력해주세요.');
+	          return false;
+	        }
+		});
+		
+		//고정게시물 체크했을 때 1, 체크 안했을 때 0
+		if(document.getElementById("check").checked) {
+		    document.getElementById("check_hidden").disabled = true;
+		}
+	});
+	
 </script>
 </html>

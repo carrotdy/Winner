@@ -29,13 +29,13 @@
 					<strong>company.</strong> (주)위너
 				</p>
 				<p>
-				    <strong>owner.</strong> 홍다영
+				    <strong>owner.</strong> 다영
 				</p>
 				<p>
 				    <strong>business license.</strong> 120-11-11111
 				</p>
 				<p>
-				    <strong>email.</strong> dy2dy23@naver.com
+				    <strong>email.</strong> dydydy@naver.com
 				</p>
 				<p>
 				    <strong>address.</strong> 서울특별시 강남구 서초동 111-111
